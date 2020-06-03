@@ -1,0 +1,188 @@
+{
+    "AWSTemplateFormatVersion":"2010-09-09",
+    "Description":"AWS CloudFormation Template for PostgreSQL, template to create a highly-available, 
+                   RDS DBInstance version 9.3 with alarming on important metrics that indicate the health of the database **WARNING**  ",
+    "Parameters":{
+      "VpcId":{
+        "Type":"String",
+        "Description":"VpcId of your existing Virtual Private Cloud(VPC)"
+      },
+      "Subnets":{
+        "Type":"CommaDelimitedList",
+        "Description":"The list of SubnetIds,for at least two Availability Zones in the region"
+      },
+      "DBIdentifier":{
+        "Type":"String",
+        "Description":"The identifier of this mysql database"
+      },
+      "MyDBName":{
+        "Default":"MyDatabase",
+        "Description":"The database name",
+        "Type":"String",
+        "MinLength":"1",
+        "MaxLength":"64",
+        "AllowedPattern":"[a-zA-Z][a-zA-Z0-9]*",
+        "ConstraintDescription":"must begin with a letter and contain only alphanumeric characters."
+      },
+      "DBUser":{
+        "Description":"The database admin account username",
+        "Type":"String",
+        "MinLength":"1",
+        "MaxLength":"16",
+        "AllowedPattern":"[a-zA-Z][a-zA-Z0-9]*",
+        "ConstraintDescription":"must begin with a letter and contain only alphanumeric characters."
+      },
+      "DBPassword":{
+        "NoEcho":"true",
+        "Description":"The database admin account password",
+        "Type":"String",
+        "MinLength":"8",
+        "MaxLength":"41",
+        "AllowedPattern":"[a-zA-Z0-9]*",
+        "ConstraintDescription":"must contain only alphanumeric characters."
+      },
+      "DBAllocatedStorage":{
+        "Default":"5",
+        "Description":"The size of the database (Gb)",
+        "Type":"Number",
+        "MinValue":"5",
+        "MaxValue":"1024",
+        "ConstraintDescription":"must be between 5 and 1024Gb."
+      },
+      "MyDBInstanceClass":{
+        "Default":"db.m3.medium",
+        "Description":"The database instance type",
+        "Type":"String",
+        "ConstraintDescription":"must select a valid database instance type."
+      },
+      "MultiAZDatabase":{
+        "Default":"false",
+        "Description":"Create a multi-AZ RDS database instance",
+        "Type":"String",
+        "AllowedValues":[
+          "true",
+          "false"
+        ],
+        "ConstraintDescription":"must be either true or false."
+      }
+    },
+    "Resources":{
+      "MyDBSubnetGroup":{
+        "Type":"AWS::RDS::DBSubnetGroup",
+        "Properties":{
+          "DBSubnetGroupDescription":"Subnets available for the RDS DB Instance",
+          "SubnetIds":{
+            "Ref":"Subnets"
+          }
+        }
+      },
+      "SecurityGroup":{
+        "Type":"AWS::EC2::SecurityGroup",
+        "Properties":{
+          "GroupDescription":"Allow access to the mysql from the Web Server",
+          "VpcId":{
+            "Ref":"VpcId"
+          },
+          "SecurityGroupIngress":[
+            {
+              "IpProtocol":"tcp",
+              "FromPort":"5432",
+              "ToPort":"5432",
+              "CidrIp":"10.0.0.0/16"
+            }
+          ]
+        }
+      },
+      "MyDB":{
+        "Type":"AWS::RDS::DBInstance",
+        "Properties":{
+          "AllocatedStorage":{
+            "Ref":"DBAllocatedStorage"
+          },
+          "AutoMinorVersionUpgrade":"false",
+          "VPCSecurityGroups":[
+            {
+              "Ref":"SecurityGroup"
+            }
+          ],
+          "DBName":{
+            "Ref":"MyDBName"
+          },
+          "DBInstanceClass":{
+            "Ref":"MyDBInstanceClass"
+          },
+          "DBSubnetGroupName":{
+            "Ref":"MyDBSubnetGroup"
+          },
+          "Engine":"postgres",
+          "EngineVersion":"9.3.10",
+          "MasterUsername":{
+            "Ref":"DBUser"
+          },
+          "MasterUserPassword":{
+            "Ref":"DBPassword"
+          },
+          "MultiAZ":{
+            "Ref":"MultiAZDatabase"
+          },
+          "StorageType":"gp2",
+          "Tags":[
+            {
+              "Key":"Name",
+              "Value":{
+                "Ref":"DBIdentifier"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "Outputs":{
+      "JDBCConnectionString":{
+        "Description":"JDBC connection string for database",
+        "Value":{
+          "Fn::Join":[
+            "",
+            [
+              "jdbc:postgresql://",
+              {
+                "Fn::GetAtt":[
+                  "MyDB",
+                  "Endpoint.Address"
+                ]
+              },
+              ":",
+              {
+                "Fn::GetAtt":[
+                  "MyDB",
+                  "Endpoint.Port"
+                ]
+              },
+              "/",
+              {
+                "Ref":"MyDBName"
+              }
+            ]
+          ]
+        }
+      },
+      "DBAddress":{
+        "Description":"address of database endpoint",
+        "Value":{
+          "Fn::GetAtt":[
+            "MyDB",
+            "Endpoint.Address"
+          ]
+        }
+      },
+      "DBPort":{
+        "Description":"database endpoint port",
+        "Value":{
+          "Fn::GetAtt":[
+            "MyDB",
+            "Endpoint.Port"
+          ]
+        }
+      }
+    }
+  }
