@@ -1,0 +1,90 @@
+{
+  "Rules": {
+    "InstanceType": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Contains": [
+              [
+                "t2.small",
+                "t2.medium",
+                "m4.large",
+                "m4.xlarge"
+              ],
+              {
+                "Ref": "InstanceType"
+              }
+            ]
+          },
+          "AssertDescription": "Restrict type to t2, and m4"
+        }
+      ]
+    },
+    "SecurityGroup": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::EachMemberEquals": [
+              {
+                "Fn::ValueOfAll": [
+                  "AWS::EC2::SecurityGroup::Id",
+                  "Tags.aws:cloudformation:logical-id"
+                ]
+              },
+              "WebServerSecurityGroup"
+            ]
+          },
+          "AssertDescription": "Only display Security Groups with the name WebASGSecurityGroup"
+        }
+      ]
+    },
+    "Security Tier": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Equals": [
+              "3",
+              {
+                "Ref": "SecurityTier"
+              }
+            ]
+          },
+          "AssertDescription": "Set tier to 3"
+        }
+      ]
+    },
+    "DRClass": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Contains": [
+              [
+                "2",
+                "3"
+              ],
+              {
+                "Ref": "DRClass"
+              }
+            ]
+          },
+          "AssertDescription": "Set DR class to 2 or 3"
+        }
+      ]
+    },
+    "ServiceTier": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Equals": [
+              "Bronze",
+              {
+                "Ref": "ServiceTier"
+              }
+            ]
+          },
+          "AssertDescription": "Setting service tier to Bronze"
+        }
+      ]
+    }
+  }
+}
