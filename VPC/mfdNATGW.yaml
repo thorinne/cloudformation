@@ -1,0 +1,66 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This builds a NAT Gateway in MFDPRODVPC.
+Parameters:
+  
+Resources:
+  NAT:
+   Type: AWS::EC2::NatGateway
+   Properties:
+      AllocationId:
+         Fn::GetAtt:
+         - EIP
+         - AllocationId
+      SubnetId:
+         Ref: Subnet
+      Tags:
+      - Key: Name 
+        Value: MFDInternetGateway
+      - Key: CreatedBy
+        Value: Business Technologies
+      - Key: CreatedOn
+        Value: 7-10-2020
+      - Key: BillingCode
+        Value: 123456789
+      - Key: Purpose
+        Value: InternetAccess
+      - Key: OwnedBy
+        Value: BT-Network
+  EIP:
+    DependsOn: VPCGatewayAttach
+    Type: AWS::EC2::EIP
+    Properties:
+        Domain: vpc
+        Tags:
+        - Key: Name 
+          Value: MFDInternetGateway
+        - Key: CreatedBy
+          Value: Business Technologies
+        - Key: CreatedOn
+          Value: 7-10-2020
+        - Key: BillingCode
+          Value: 123456789
+        - Key: Purpose
+          Value: InternetAccess
+        - Key: OwnedBy
+          Value: BT-Network
+  Route:
+    Type: AWS::EC2::Route
+    Properties:
+        RouteTableId:
+          Ref: RouteTable
+        DestinationCidrBlock: 0.0.0.0/0
+        NatGatewayId:
+          Ref: NAT
+        Tags:
+        - Key: Name 
+          Value: MFDInternetGateway
+        - Key: CreatedBy
+          Value: Business Technologies
+        - Key: CreatedOn
+          Value: 7-10-2020
+        - Key: BillingCode
+          Value: 123456789
+        - Key: Purpose
+          Value: InternetAccess
+        - Key: OwnedBy
+          Value: BT-Network

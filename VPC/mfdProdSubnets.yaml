@@ -1,0 +1,655 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This builds subnets in the MFDPRODVPC.
+Parameters:
+  vpcID:
+    Type: String
+    Default: vpc-06d3653b14dad4be8
+Resources:
+  AZACOREAPP102301520:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '0'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.152.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_A_CORE_APP_10.230.152.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZACOREDB102301560:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '0'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.156.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_A_CORE_DB_10.230.156.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZACOREINF102301440:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '0'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.144.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_A_COREINF_10.230.144.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZACOREWEB102301480:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '0'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.148.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_A_COREWEB_10.230.148.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZADMZAPP102301360:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '0'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.136.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_A_DMZ_APP_10.230.136.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZADMZDB102301400:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '0'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.140.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_A_DMZ_DB_10.230.140.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZADMZINF102301280:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '0'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.128.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_A_DMZINF_10.230.128.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZADMZWEB102301320:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '0'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.132.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_A_DMZWEB_10.230.132.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZBCOREAPP102301840:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '1'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.184.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_B_CORE_APP_10.230.184.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZBCOREDB102301880:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '1'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.188.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_B_CORE_DB_10.230.188.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZBCOREINF102301760:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '1'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.176.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_B_COREINF_10.230.176.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZBCOREWEB102301800:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '1'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.180.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_B_COREWEB_10.230.180.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZBDMZAPP102301680:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '1'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.168.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_B_DMZ_APP_10.230.168.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZBDMZDB102301720:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '1'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.172.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_B_DMZ_DB_10.230.172.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZBDMZINF102301600:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '1'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.160.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_B_DMZINF_10.230.160.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZBDMZWEB102301640:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '1'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.164.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_B_DMZWEB_10.230.164.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZCCOREAPP102302160:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '2'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.216.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_C_CORE_APP_10.230.216.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZCCOREDB102302200:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '2'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.220.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_C_CORE_DB_10.230.220.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZCCOREINF102302080:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '2'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.208.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_C_COREINF_10.230.208.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZCCOREWEB102302120:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '2'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.212.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_C_COREWEB_10.230.212.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Private
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZCDMZAPP102302000:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '2'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.200.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_C_DMZ_APP_10.230.200.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZCDMZDB102302040:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '2'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.204.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_C_DMZ_DB_10.230.204.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZCDMZINF102301920:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '2'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.192.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_C_DMZINF_10.230.192.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet
+  AZCDMZWEB102301960:
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '2'
+        - Fn::GetAZs: ''
+      CidrBlock: 10.230.196.0/23
+      Tags:
+      - Key: Name
+        Value: AZ_C_DMZWEB_10.230.196.0
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId:
+        Ref: vpcID
+    Type: AWS::EC2::Subnet

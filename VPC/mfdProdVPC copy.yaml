@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This builds MFD PROD VPC.
+Resources:
+  MFDPRODVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.230.128.0/17
+      EnableDnsSupport: 'false'
+      EnableDnsHostnames: 'false'
+      InstanceTenancy: default
+      Tags:
+      - Key: Name 
+        Value: MFDPRODVPC
+      - Key: CreatedBy
+        Value: Business Technologies
+      - Key: CreatedOn
+        Value: 7-9-2020
+      - Key: BillingCode
+        Value: 123456789
+      - Key: Purpose
+        Value: ProductionVPC
+      - Key: OwnedBy
+        Value: BT-Network
+Outputs:
+  VpcId:
+    Description: "MFDPRODVPC VPC ID Value"
+    Value: !Ref MFDPRODVPC
+    Export:
+      Name: MFDVPC-id

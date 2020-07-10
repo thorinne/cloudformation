@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This builds the Internet Gateway in DENPRODVPC.
+Parameters:
+
+Resources:  
+  DENInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name 
+        Value: MFDInternetGateway
+      - Key: CreatedBy
+        Value: Business Technologies
+      - Key: CreatedOn
+        Value: 7-10-2020
+      - Key: BillingCode
+        Value: 123456789
+      - Key: Purpose
+        Value: InternetAccess
+      - Key: OwnedBy
+        Value: BT-Network
