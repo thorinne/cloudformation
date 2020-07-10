@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This builds an route table in MFDPRODVPC outbound traffic.
+Parameters:
+  vpcID:
+    Type: String
+    Default: vpc-06d3653b14dad4be8
+Resources:
+  MFDInternetRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties: 
+      Tags:
+      - Key: Name
+        Value: mfdInternetFacingRouteTable
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId: 
+        Ref: vpcID

@@ -1,9 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: This builds the Internet Gateway in DENPRODVPC.
-Parameters:
-
 Resources:  
-  DENInternetGateway:
+  MFDInternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
       Tags:
