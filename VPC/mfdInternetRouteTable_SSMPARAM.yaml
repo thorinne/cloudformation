@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This builds an route table in MFDPRODVPC outbound traffic.
+Parameters:
+  MFDPRDVPCID1:
+    Description: VPC ID Number
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: MFDPRDVPCID1
+Resources:
+  MFDInternetRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties: 
+      Tags:
+      - Key: Name
+        Value: mfdInternetFacingRouteTable
+      - Key: Environment
+        Value: MFD Production
+      - Key: Permanence
+        Value: Permenant
+      - Key: Owner
+        Value: Steve Coker
+      - Key: Cost Center/Business Unit
+        Value: BT-Networking
+      - Key: Change Control
+        Value: CHK112233
+      - Key: Customer
+        Value: DEN
+      - Key: Public Or Private Facing
+        Value: Public
+      VpcId: 
+        Ref: MFDPRDVPCID1
+  MFDINTERNETROUTETABLE:
+    Type: AWS::SSM::Parameter
+    Properties: 
+      Description: Intenet Route Table ID
+      Name: MFDInternetRouteTable
+      Type: String
+      Value: !Ref MFDInternetRouteTable

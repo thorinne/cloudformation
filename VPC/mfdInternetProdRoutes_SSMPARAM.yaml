@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This builds the default outbound routes in MFDPRODVPC.
+Parameters:
+  MFDInternetRouteTable:
+    Description: VPC ID Number
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: MFDInternetRouteTable
+  MFDInternetGateway:
+    Description: VPC ID Number
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: MFDInternetGateway
+Resources:
+  InternetRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref MFDInternetRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref MFDInternetGateway

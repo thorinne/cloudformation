@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This builds the Internet Gateway in DENPRODVPC.
+Parameters:
+  MFDPRDVPCID1:
+    Description: VPC ID Number
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: MFDPRDVPCID1
+Resources:  
+  MFDInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name 
+        Value: MFDInternetGateway
+      - Key: CreatedBy
+        Value: Business Technologies
+      - Key: CreatedOn
+        Value: 7-10-2020
+      - Key: BillingCode
+        Value: 123456789
+      - Key: Purpose
+        Value: InternetAccess
+      - Key: OwnedBy
+        Value: BT-Network
+  MFDInternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties: 
+      InternetGatewayId: !Ref MFDInternetGateway
+      VpcId: !Ref MFDPRDVPCID1 
+  MFDInternetGatewayID:
+    Type: AWS::SSM::Parameter
+    Properties: 
+      Description: Internet Gateway ID Number
+      Name: MFDInternetGateway
+      Type: String
+      Value: !Ref MFDInternetGateway
