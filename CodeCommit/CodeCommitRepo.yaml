@@ -1,0 +1,19 @@
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Creates CodeCommit Repo and matching S3 bucket (if name is available).
+Parameters:
+  Naming:
+    Type: String
+    Default: Name of CodeCommit Repo
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Fn::Join: ["-", [!Ref Naming, {'Fn::Sub': '${AWS::Region}'}, "ccb"]]
+  CCRepo:
+    Type: AWS::CodeCommit::Repository
+    Properties:
+      RepositoryDescription: Code Repo Purpose
+      RepositoryName: !Ref Naming
+
