@@ -1,6 +1,6 @@
 
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Creates CodeCommit Repo and matching S3 bucket (if name is available).
+Description: Creates an empty CodeCommit Repo and paired S3 bucket (if name is available).
 Parameters:
   Naming:
     Type: String
