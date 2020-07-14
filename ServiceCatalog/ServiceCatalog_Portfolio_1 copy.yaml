@@ -45,10 +45,8 @@ Parameters:
   Env:
     Description:    Please specify the target Environment. Used for tagging and resource names. Mandatory LOWER CASE.
     Type:           String
-    Default:        "dev"
+    Default:        "prod"
     AllowedValues:
-      - test
-      - dev
       - prod
 
 # Department
@@ -62,16 +60,6 @@ Parameters:
     Description:    Please specify the Owner. Used for tagging
     Type:           String
     Default:        "Owner"
-
-# Product Enviornment type
-  ProductEnv:
-    Description:    Please specify the target Environment. Used for tagging and resource names. Mandatory LOWER CASE.
-    Type:           String
-    Default:        "dev"
-    AllowedValues:
-      - test
-      - dev
-      - prod
 
 # Portfolio Provider Name
   PortfolioProviderName:
@@ -91,17 +79,7 @@ Parameters:
     Type:           String
     Default:        "Test_Portfolio"
 
-# Tag Options Activation
-  ActivateProductTagOptions:
-    Description:    Activate Custom Tag Options? Used for portfolio tagging
-    Type:           String
-    Default:        "true"
-    AllowedValues:
-      - 'true'
-      - 'false'
-
 Resources:
-
   ServiceCatalogPortfolio:
     Type: "AWS::ServiceCatalog::Portfolio"
     Properties:
@@ -115,8 +93,6 @@ Resources:
           Value:  !Sub '${Dept}'
         - Key:    Env
           Value:  !Sub '${Env}'
-        - Key:    User
-          Value:  !Sub '${User}'
         - Key:    Owner
           Value:  !Sub '${Owner}'
 
@@ -132,7 +108,3 @@ Outputs:
     Export:
       Name:   !Sub '${AWS::StackName}-ServiceCatalogPortfolioName'
 
-  ServiceCatalogProductTagOptions:
-    Value:    !Ref 'ServiceCatalogProductTagOptions'
-    Export:
-      Name:   !Sub '${AWS::StackName}-ServiceCatalogProductTagOptions'
